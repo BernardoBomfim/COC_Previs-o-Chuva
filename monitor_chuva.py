@@ -58,6 +58,8 @@ def _rotulo_periodo(nome):
 USER_AGENT  = "bomfimbernardo9@gmail.com"     # exigido pelo Yr
 OWM_API_KEY = os.environ.get("OWM_API_KEY")                     # chave gratuita do OpenWeatherMap
 
+#Erro de commit, tentaiva de enviar email, mas nao funcionou, entao coloquei a senha de app no env do replit
+
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT   = 587
 EMAIL_REMETENTE   = "bomfimbernardo9@gmail.com"     # conta que ENVIA (com senha de app)
