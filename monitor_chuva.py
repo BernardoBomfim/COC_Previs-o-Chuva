@@ -56,7 +56,7 @@ def _rotulo_periodo(nome):
     return nome
 
 USER_AGENT  = "bomfimbernardo9@gmail.com"     # exigido pelo Yr
-OWM_API_KEY = os.environ.get("20bdd314c43aaeaa46f1d066343e4c4f")                     # chave gratuita do OpenWeatherMap
+OWM_API_KEY = os.environ.get("OWM_API_KEY")                     # chave gratuita do OpenWeatherMap
 
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT   = 587
