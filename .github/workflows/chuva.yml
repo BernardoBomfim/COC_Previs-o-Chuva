@@ -1,0 +1,48 @@
+name: Monitor de Chuva Cocal
+
+on:
+  schedule:
+    # Cron em UTC. Brasilia = UTC-3 (sem horario de verao desde 2019).
+    # Verificacao constante (a previsao e volatil):
+    - cron: "0 10 * * *"   # 07:00 BRT  (na segunda-feira dispara o RELATORIO da semana)
+    - cron: "0 16 * * *"   # 13:00 BRT
+    - cron: "0 22 * * *"   # 19:00 BRT
+  workflow_dispatch: {}     # botao para rodar manualmente
+
+permissions:
+  contents: write           # necessario para salvar o estado.json no repositorio
+
+jobs:
+  rodar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependencias
+        run: pip install requests
+
+      - name: Rodar o monitor
+        env:
+          EMAIL_SENHA: ${{ secrets.EMAIL_SENHA }}
+          OWM_API_KEY: ${{ secrets.OWM_API_KEY }}
+        run: python monitor_chuva.py
+
+      - name: Salvar estado (deteccao de mudancas)
+        if: always()
+        run: |
+          if [ ! -f estado.json ]; then echo "Sem estado para salvar."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add estado.json
+          if git diff --cached --quiet; then
+            echo "Estado sem mudancas."
+          else
+            git commit -m "Atualiza estado da previsao [skip ci]"
+            git push
+          fi
