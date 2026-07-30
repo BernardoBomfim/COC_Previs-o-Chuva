@@ -339,7 +339,7 @@ def decidir_envios(resultados, estado, agora):
     unidades_chuva = [u for u, s in status_amanha.items() if s == "chuva"]
 
     # ---- 1. Relatorio semanal (segunda de manha) ----
-    eh_segunda_manha = (agora.weekday() == 0 and agora.hour < 12)
+    eh_segunda_manha = (agora.weekday() == 0 and agora.hour < 6)
     if (eh_segunda_manha and estado.get("relatorio_semana") != str(hoje)) or FORCAR_RESUMO:
         emails.append(montar_relatorio_semanal(resultados, hoje))
         estado["relatorio_semana"] = str(hoje)
