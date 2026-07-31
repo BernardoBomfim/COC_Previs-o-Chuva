@@ -63,7 +63,7 @@ OWM_API_KEY = os.environ.get("OWM_API_KEY")                     # chave gratuita
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT   = 587
 EMAIL_REMETENTE   = "bomfimbernardo9@gmail.com"     # conta que ENVIA (com senha de app)
-EMAIL_DESTINATARIO = "eduardo.moraes2040@gmail.com"               # seu e-mail PESSOAL (voce repassa manual)
+EMAIL_DESTINATARIO = ['eduardo.moraes2040@gmail.com', '05daniel.vieira@gmail.com']               # seu e-mail PESSOAL (voce repassa manual)
 EMAIL_SENHA = os.environ.get("EMAIL_SENHA")
 
 ESTADO_PATH   = "estado.json"
