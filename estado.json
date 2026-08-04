@@ -1,10 +1,10 @@
 {
   "amanha": {
-    "data": "2026-08-04",
+    "data": "2026-08-05",
     "status": {
-      "Paraguacu Paulista (SP)": "seco",
-      "Narandiba (SP)": "seco",
-      "Passa Tempo (VERIFICAR)": "seco",
+      "Paraguacu Paulista (SP)": "chuva",
+      "Narandiba (SP)": "chuva",
+      "Passa Tempo (VERIFICAR)": "chuva",
       "Rio Brilhante (MS)": "seco"
     }
   }
