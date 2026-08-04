@@ -37,7 +37,7 @@ from email.utils import formataddr
 LOCAIS = {
     "Paraguacu Paulista (SP)": (-22.4131, -50.5761),
     "Narandiba (SP)":          (-22.4083, -51.5289),
-    "Passa Tempo (VERIFICAR)": (-22.4083, -51.5289),   # troque pela coordenada real
+    "Passa Tempo (MS)": (-22.4083, -51.5289),   # troque pela coordenada real
     "Rio Brilhante (MS)":      (-21.8019, -54.5461),
 }
 
