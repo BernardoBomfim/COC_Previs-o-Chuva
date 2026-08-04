@@ -63,7 +63,7 @@ OWM_API_KEY = os.environ.get("OWM_API_KEY")                     # chave gratuita
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT   = 587
 EMAIL_REMETENTE   = "bomfimbernardo9@gmail.com"     # conta que ENVIA (com senha de app)
-EMAIL_DESTINATARIO = ['eduardo.moraes2040@gmail.com', '05daniel.vieira@gmail.com']               # seu e-mail PESSOAL (voce repassa manual)
+EMAIL_DESTINATARIO = ["eduardo.moraes2040@gmail.com", "05daniel.vieira@gmail.com"]               # seu e-mail PESSOAL (voce repassa manual)
 EMAIL_SENHA = os.environ.get("EMAIL_SENHA")
 
 ESTADO_PATH   = "estado.json"
@@ -292,15 +292,17 @@ def montar_lembrete(resultados, amanha, unidades_alvo, tipo, detalhes_mudanca=No
 
 
 def enviar_email(assunto, corpo_html):
+    # aceita tanto um endereco (texto) quanto varios (lista)
+    destinatarios = EMAIL_DESTINATARIO if isinstance(EMAIL_DESTINATARIO, (list, tuple)) else [EMAIL_DESTINATARIO]
     msg = MIMEMultipart("alternative")
     msg["Subject"] = assunto
     msg["From"] = formataddr(("Monitor de Chuva Cocal", EMAIL_REMETENTE))
-    msg["To"] = EMAIL_DESTINATARIO
+    msg["To"] = ", ".join(destinatarios)   # cabecalho e sempre texto
     msg.attach(MIMEText(corpo_html, "html", "utf-8"))
     with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) as s:
         s.ehlo(); s.starttls(); s.ehlo()
         s.login(EMAIL_REMETENTE, EMAIL_SENHA)
-        s.sendmail(EMAIL_REMETENTE, [EMAIL_DESTINATARIO], msg.as_string())
+        s.sendmail(EMAIL_REMETENTE, destinatarios, msg.as_string())
 
 
 # ============================================================
